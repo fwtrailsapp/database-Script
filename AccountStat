@@ -1,0 +1,27 @@
+USE [Greenway]
+GO
+
+/****** Object:  Table [dbo].[AccountStat]    Script Date: 3/2/2016 1:16:31 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AccountStat](
+	[statID] [nchar](10) NOT NULL,
+	[accountID] [int] NOT NULL,
+	[statType] [nchar](10) NOT NULL,
+	[duration] [int] NOT NULL,
+	[distance] [int] NOT NULL,
+	[calories] [int] NOT NULL,
+	[numberActivities] [int] NOT NULL,
+ CONSTRAINT [PK_AccountStat] PRIMARY KEY CLUSTERED 
+(
+	[statID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

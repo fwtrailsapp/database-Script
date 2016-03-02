@@ -1,0 +1,27 @@
+USE [Greenway]
+GO
+
+/****** Object:  Table [dbo].[Account]    Script Date: 3/2/2016 1:16:25 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Account](
+	[accountID] [nvarchar](10) NOT NULL,
+	[username] [nvarchar](10) NOT NULL,
+	[password] [nvarchar](max) NOT NULL,
+	[dob] [int] NULL,
+	[weight] [int] NULL,
+	[sex] [nvarchar](10) NULL,
+	[height] [int] NULL,
+ CONSTRAINT [PK_AccountID] PRIMARY KEY CLUSTERED 
+(
+	[accountID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+

@@ -1,0 +1,34 @@
+USE [Greenway]
+GO
+
+/****** Object:  Table [dbo].[Activity]    Script Date: 3/2/2016 1:16:41 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Activity](
+	[activityID] [nvarchar](10) NOT NULL,
+	[accoutUserID] [nvarchar](10) NOT NULL,
+	[exerciseType] [nchar](10) NOT NULL,
+	[startTime] [timestamp] NOT NULL,
+	[duration] [int] NOT NULL,
+	[distance] [int] NOT NULL,
+	[caloriesBurned] [int] NOT NULL,
+ CONSTRAINT [PK_Activity] PRIMARY KEY CLUSTERED 
+(
+	[activityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Account] FOREIGN KEY([accoutUserID])
+REFERENCES [dbo].[Account] ([accountID])
+GO
+
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Account]
+GO
+
+

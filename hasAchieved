@@ -1,0 +1,23 @@
+USE [Greenway]
+GO
+
+/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/2/2016 1:16:51 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[hasAchieved](
+	[achieverID] [nchar](10) NOT NULL,
+	[achieveID] [nchar](10) NOT NULL,
+	[achieveDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_hasAchieved] PRIMARY KEY CLUSTERED 
+(
+	[achieverID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

@@ -1,0 +1,22 @@
+USE [Greenway]
+GO
+
+/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/2/2016 1:16:46 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[exerciseType](
+	[exerciseTypeName] [nvarchar](10) NOT NULL,
+	[met] [nchar](10) NOT NULL,
+ CONSTRAINT [PK_exerciseType] PRIMARY KEY CLUSTERED 
+(
+	[exerciseTypeName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

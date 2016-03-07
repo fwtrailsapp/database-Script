@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[Account]    Script Date: 3/2/2016 1:16:25 AM ******/
+/****** Object:  Table [dbo].[Account]    Script Date: 3/7/2016 2:01:51 AM ******/
 SET ANSI_NULLS ON
 GO
 

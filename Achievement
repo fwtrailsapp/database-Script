@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[Achievement]    Script Date: 3/2/2016 1:16:36 AM ******/
+/****** Object:  Table [dbo].[Achievement]    Script Date: 3/7/2016 2:04:21 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,18 +9,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Achievement](
-	[achievedID] [nchar](10) NOT NULL,
-	[achievedName] [nchar](10) NOT NULL,
-	[achievedType] [nchar](10) NOT NULL,
-	[description] [nchar](10) NOT NULL,
-	[thresholdType] [nchar](10) NOT NULL,
-	[threshold] [nchar](10) NOT NULL,
+	[achievedID] [nvarchar](10) NOT NULL,
+	[achievedName] [nvarchar](10) NOT NULL,
+	[achievedType] [nvarchar](10) NOT NULL,
+	[description] [nvarchar](10) NOT NULL,
+	[thresholdType] [nvarchar](10) NOT NULL,
+	[threshold] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_Achievement] PRIMARY KEY CLUSTERED 
 (
 	[achievedID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+ALTER TABLE [dbo].[Achievement]  WITH CHECK ADD  CONSTRAINT [FK_Achievement_exerciseType] FOREIGN KEY([achievedType])
+REFERENCES [dbo].[exerciseType] ([exerciseTypeName])
+GO
+
+ALTER TABLE [dbo].[Achievement] CHECK CONSTRAINT [FK_Achievement_exerciseType]
 GO
 
 

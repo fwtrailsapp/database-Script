@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/2/2016 1:16:51 AM ******/
+/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/7/2016 2:05:36 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,15 +9,30 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[hasAchieved](
-	[achieverID] [nchar](10) NOT NULL,
-	[achieveID] [nchar](10) NOT NULL,
-	[achieveDate] [datetime] NOT NULL,
+	[achieverID] [nvarchar](10) NOT NULL,
+	[achieveID] [nvarchar](10) NOT NULL,
+	[achieveDate] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_hasAchieved] PRIMARY KEY CLUSTERED 
 (
-	[achieverID] ASC
+	[achieverID] ASC,
+	[achieveID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+ALTER TABLE [dbo].[hasAchieved]  WITH CHECK ADD  CONSTRAINT [FK_hasAchieved_Account] FOREIGN KEY([achieverID])
+REFERENCES [dbo].[Account] ([accountID])
+GO
+
+ALTER TABLE [dbo].[hasAchieved] CHECK CONSTRAINT [FK_hasAchieved_Account]
+GO
+
+ALTER TABLE [dbo].[hasAchieved]  WITH CHECK ADD  CONSTRAINT [FK_hasAchieved_Achievement] FOREIGN KEY([achieveID])
+REFERENCES [dbo].[Achievement] ([achievedID])
+GO
+
+ALTER TABLE [dbo].[hasAchieved] CHECK CONSTRAINT [FK_hasAchieved_Achievement]
 GO
 
 

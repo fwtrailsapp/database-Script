@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/2/2016 1:16:46 AM ******/
+/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/7/2016 2:03:12 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,7 +10,7 @@ GO
 
 CREATE TABLE [dbo].[exerciseType](
 	[exerciseTypeName] [nvarchar](10) NOT NULL,
-	[met] [nchar](10) NOT NULL,
+	[met] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_exerciseType] PRIMARY KEY CLUSTERED 
 (
 	[exerciseTypeName] ASC

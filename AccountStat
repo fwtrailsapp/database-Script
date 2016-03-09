@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[AccountStat]    Script Date: 3/7/2016 2:03:47 AM ******/
+/****** Object:  Table [dbo].[AccountStat]    Script Date: 3/9/2016 1:30:54 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,8 +10,8 @@ GO
 
 CREATE TABLE [dbo].[AccountStat](
 	[statID] [nvarchar](10) NOT NULL,
-	[accountID] [nvarchar](10) NOT NULL,
-	[statType] [nvarchar](10) NOT NULL,
+	[accountID] [nvarchar](20) NOT NULL,
+	[statType] [int] NOT NULL,
 	[duration] [nvarchar](10) NOT NULL,
 	[distance] [int] NOT NULL,
 	[calories] [int] NOT NULL,
@@ -32,7 +32,7 @@ ALTER TABLE [dbo].[AccountStat] CHECK CONSTRAINT [FK_AccountStat_Account]
 GO
 
 ALTER TABLE [dbo].[AccountStat]  WITH CHECK ADD  CONSTRAINT [FK_AccountStat_exerciseType] FOREIGN KEY([statType])
-REFERENCES [dbo].[exerciseType] ([exerciseTypeName])
+REFERENCES [dbo].[exerciseType] ([lookupCode])
 GO
 
 ALTER TABLE [dbo].[AccountStat] CHECK CONSTRAINT [FK_AccountStat_exerciseType]

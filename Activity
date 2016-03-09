@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[Activity]    Script Date: 3/7/2016 2:04:41 AM ******/
+/****** Object:  Table [dbo].[Activity]    Script Date: 3/9/2016 1:32:14 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,12 +9,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Activity](
-	[activityID] [nvarchar](10) NOT NULL,
-	[accoutUserID] [nvarchar](10) NOT NULL,
-	[exerciseType] [nvarchar](10) NOT NULL,
-	[startTime] [nvarchar](10) NOT NULL,
-	[duration] [nvarchar](10) NOT NULL,
-	[distance] [int] NOT NULL,
+	[activityID] [int] IDENTITY(0,1) NOT NULL,
+	[accountUserID] [nvarchar](20) NOT NULL,
+	[exerciseType] [int] NOT NULL,
+	[startTime] [datetime2](7) NOT NULL,
+	[duration] [int] NOT NULL,
+	[distance] [float] NOT NULL,
 	[caloriesBurned] [int] NOT NULL,
  CONSTRAINT [PK_Activity] PRIMARY KEY CLUSTERED 
 (
@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[Activity](
 
 GO
 
-ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Account] FOREIGN KEY([accoutUserID])
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Account] FOREIGN KEY([accountUserID])
 REFERENCES [dbo].[Account] ([accountID])
 GO
 
@@ -32,10 +32,8 @@ ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Account]
 GO
 
 ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_exerciseType] FOREIGN KEY([exerciseType])
-REFERENCES [dbo].[exerciseType] ([exerciseTypeName])
+REFERENCES [dbo].[exerciseType] ([lookupCode])
 GO
 
 ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_exerciseType]
 GO
-
-

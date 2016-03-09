@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[Account]    Script Date: 3/7/2016 2:01:51 AM ******/
+/****** Object:  Table [dbo].[Account]    Script Date: 3/9/2016 1:30:02 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Account](
-	[accountID] [nvarchar](10) NOT NULL,
+	[accountID] [nvarchar](20) NOT NULL,
 	[username] [nvarchar](10) NOT NULL,
 	[password] [nvarchar](max) NOT NULL,
 	[dob] [int] NULL,
@@ -23,5 +23,8 @@ CREATE TABLE [dbo].[Account](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
+
+
+
 
 

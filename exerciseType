@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/7/2016 2:03:12 AM ******/
+/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/9/2016 1:32:41 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,14 +9,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[exerciseType](
-	[exerciseTypeName] [nvarchar](10) NOT NULL,
-	[met] [nvarchar](10) NOT NULL,
- CONSTRAINT [PK_exerciseType] PRIMARY KEY CLUSTERED 
+	[lookupCode] [int] IDENTITY(0,1) NOT NULL,
+	[exerciseDescription] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_lookupCode] PRIMARY KEY CLUSTERED 
 (
-	[exerciseTypeName] ASC
+	[lookupCode] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
-
-

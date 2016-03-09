@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/7/2016 2:05:36 AM ******/
+/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/9/2016 1:33:03 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[hasAchieved](
-	[achieverID] [nvarchar](10) NOT NULL,
+	[achieverID] [nvarchar](20) NOT NULL,
 	[achieveID] [nvarchar](10) NOT NULL,
 	[achieveDate] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_hasAchieved] PRIMARY KEY CLUSTERED 
@@ -34,5 +34,7 @@ GO
 
 ALTER TABLE [dbo].[hasAchieved] CHECK CONSTRAINT [FK_hasAchieved_Achievement]
 GO
+
+
 
 

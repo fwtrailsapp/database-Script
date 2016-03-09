@@ -1,7 +1,7 @@
 USE [Greenway]
 GO
 
-/****** Object:  Table [dbo].[PathSegment]    Script Date: 3/7/2016 2:05:02 AM ******/
+/****** Object:  Table [dbo].[PathSegment]    Script Date: 3/9/2016 1:33:57 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,14 +9,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[PathSegment](
-	[SegmentID] [nvarchar](10) NOT NULL,
-	[activityID] [nvarchar](10) NOT NULL,
-	[path] [nvarchar](10) NOT NULL,
+	[SegmentID] [int] IDENTITY(0,1) NOT NULL,
+	[activityID] [int] NOT NULL,
+	[path] [nvarchar](max) NOT NULL,
  CONSTRAINT [PK_PathSegment] PRIMARY KEY CLUSTERED 
 (
 	[SegmentID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
 
@@ -26,5 +26,4 @@ GO
 
 ALTER TABLE [dbo].[PathSegment] CHECK CONSTRAINT [FK_PathSegment_Activity]
 GO
-
 

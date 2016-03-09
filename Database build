@@ -1,0 +1,254 @@
+USE [master]
+GO
+/****** Object:  Database [Greenway]    Script Date: 3/7/2016 6:11:41 PM ******/
+CREATE DATABASE [Greenway]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Greenway', FILENAME = N'C:\Program Files (x86)\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\Greenway.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Greenway_log', FILENAME = N'C:\Program Files (x86)\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\Greenway_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Greenway].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Greenway] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Greenway] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Greenway] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Greenway] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Greenway] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Greenway] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Greenway] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Greenway] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Greenway] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Greenway] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Greenway] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Greenway] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Greenway] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Greenway] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Greenway] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Greenway] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Greenway] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Greenway] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Greenway] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Greenway] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Greenway] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Greenway] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Greenway] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Greenway] SET  MULTI_USER 
+GO
+ALTER DATABASE [Greenway] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Greenway] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Greenway] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Greenway] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [Greenway] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Greenway', N'ON'
+GO
+ALTER DATABASE [Greenway] SET QUERY_STORE = OFF
+GO
+USE [Greenway]
+GO
+/****** Object:  Table [dbo].[Account]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Account](
+	[accountID] [nvarchar](20) NOT NULL,
+	[username] [nvarchar](10) NOT NULL,
+	[password] [nvarchar](max) NOT NULL,
+	[dob] [int] NULL,
+	[weight] [int] NULL,
+	[sex] [nvarchar](10) NULL,
+	[height] [int] NULL,
+ CONSTRAINT [PK_AccountID] PRIMARY KEY CLUSTERED 
+(
+	[accountID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[AccountStat]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AccountStat](
+	[statID] [nvarchar](10) NOT NULL,
+	[accountID] [nvarchar](20) NOT NULL,
+	[statType] [int] NOT NULL,
+	[duration] [nvarchar](10) NOT NULL,
+	[distance] [int] NOT NULL,
+	[calories] [int] NOT NULL,
+	[numberActivities] [int] NOT NULL,
+ CONSTRAINT [PK_AccountStat] PRIMARY KEY CLUSTERED 
+(
+	[statID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Achievement]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Achievement](
+	[achievedID] [nvarchar](10) NOT NULL,
+	[achievedName] [nvarchar](10) NOT NULL,
+	[achievedType] [int] NOT NULL,
+	[description] [nvarchar](10) NOT NULL,
+	[thresholdType] [nvarchar](10) NOT NULL,
+	[threshold] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_Achievement] PRIMARY KEY CLUSTERED 
+(
+	[achievedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Activity]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Activity](
+	[activityID] [int] IDENTITY(0,1),
+	[accountUserID] [nvarchar](20) NOT NULL,
+	[exerciseType] [int] NOT NULL,
+	[startTime] [DateTime2] NOT NULL,
+	[duration] [int] NOT NULL,
+	[distance] [float] NOT NULL,
+	[caloriesBurned] [int] NOT NULL,
+ CONSTRAINT [PK_Activity] PRIMARY KEY CLUSTERED 
+(
+	[activityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[exerciseType]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[exerciseType](
+	[lookupCode] [int] IDENTITY(0,1),
+	[exerciseDescription] [nvarchar](10) NOT NULL,
+CONSTRAINT [PK_lookupCode] PRIMARY KEY CLUSTERED 
+(
+	[lookupCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+INSERT INTO [dbo].[exerciseType] VALUES ('bike');
+INSERT INTO [dbo].[exerciseType] VALUES ('run');
+INSERT INTO [dbo].[exerciseType] VALUES ('walk');
+GO
+
+/****** Object:  Table [dbo].[hasAchieved]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[hasAchieved](
+	[achieverID] [nvarchar](20) NOT NULL,
+	[achieveID] [nvarchar](10) NOT NULL,
+	[achieveDate] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_hasAchieved] PRIMARY KEY CLUSTERED 
+(
+	[achieverID] ASC,
+	[achieveID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[PathSegment]    Script Date: 3/7/2016 6:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PathSegment](
+	[SegmentID] [int] IDENTITY(0,1),
+	[activityID] [int] NOT NULL,
+	[path] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_PathSegment] PRIMARY KEY CLUSTERED 
+(
+	[SegmentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[AccountStat]  WITH CHECK ADD  CONSTRAINT [FK_AccountStat_Account] FOREIGN KEY([accountID])
+REFERENCES [dbo].[Account] ([accountID])
+GO
+ALTER TABLE [dbo].[AccountStat] CHECK CONSTRAINT [FK_AccountStat_Account]
+GO
+ALTER TABLE [dbo].[AccountStat]  WITH CHECK ADD  CONSTRAINT [FK_AccountStat_exerciseType] FOREIGN KEY([statType])
+REFERENCES [dbo].[exerciseType] ([lookupCode])
+GO
+ALTER TABLE [dbo].[AccountStat] CHECK CONSTRAINT [FK_AccountStat_exerciseType]
+GO
+ALTER TABLE [dbo].[Achievement]  WITH CHECK ADD  CONSTRAINT [FK_Achievement_exerciseType] FOREIGN KEY([achievedType])
+REFERENCES [dbo].[exerciseType] ([lookupCode])
+GO
+ALTER TABLE [dbo].[Achievement] CHECK CONSTRAINT [FK_Achievement_exerciseType]
+GO
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_Account] FOREIGN KEY([accountUserID])
+REFERENCES [dbo].[Account] ([accountID])
+GO
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_Account]
+GO
+ALTER TABLE [dbo].[Activity]  WITH CHECK ADD  CONSTRAINT [FK_Activity_exerciseType] FOREIGN KEY([exerciseType])
+REFERENCES [dbo].[exerciseType] ([lookupCode])
+GO
+ALTER TABLE [dbo].[Activity] CHECK CONSTRAINT [FK_Activity_exerciseType]
+GO
+ALTER TABLE [dbo].[hasAchieved]  WITH CHECK ADD  CONSTRAINT [FK_hasAchieved_Account] FOREIGN KEY([achieverID])
+REFERENCES [dbo].[Account] ([accountID])
+GO
+ALTER TABLE [dbo].[hasAchieved] CHECK CONSTRAINT [FK_hasAchieved_Account]
+GO
+ALTER TABLE [dbo].[hasAchieved]  WITH CHECK ADD  CONSTRAINT [FK_hasAchieved_Achievement] FOREIGN KEY([achieveID])
+REFERENCES [dbo].[Achievement] ([achievedID])
+GO
+ALTER TABLE [dbo].[hasAchieved] CHECK CONSTRAINT [FK_hasAchieved_Achievement]
+GO
+ALTER TABLE [dbo].[PathSegment]  WITH CHECK ADD  CONSTRAINT [FK_PathSegment_Activity] FOREIGN KEY([activityID])
+REFERENCES [dbo].[Activity] ([activityID])
+GO
+ALTER TABLE [dbo].[PathSegment] CHECK CONSTRAINT [FK_PathSegment_Activity]
+GO
+USE [master]
+GO
+ALTER DATABASE [Greenway] SET  READ_WRITE 
+GO
